@@ -1,25 +1,22 @@
 const express=require("express");
+var cors = require('cors');
 const mongoose=require("mongoose");
-const usuarioRouter = require("./routes/usuario");
-const conciertoRouter = require("./routes/concierto");
-const zonaRouter = require("./routes/zona");
+const zonaRoutes=require("./routes/zona");
 
 //Configuracion
 const app=express();
-const port=4000;
+const port= process.env.PORT || 4000;
 const MONGO_URI="mongodb+srv://hsuazo:8E895F08E3@cluster0.9ifpwdv.mongodb.net/BoleteriaDB?retryWrites=true&w=majority"
-
-
-//midlewares
-app.use(express.json());
-app.use("/api",usuarioRouter);
-app.use("/api",conciertoRouter);
-app.use("/api",zonaRouter);
 
 //rutas
 
+app.use(express.json());
+app.use(cors())
+
+app.use("/api",zonaRoutes);
+
 app.get("/",(req,res)=>{
-    res.send("<h1>Hola</h1>");
+    res.send("<h1>APP BOLETERIA CONCIERTOS</h1>");
 })
 
 //Conexion Mongodb

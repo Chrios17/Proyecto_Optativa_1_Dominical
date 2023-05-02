@@ -6,6 +6,11 @@ const zonaSchema = mongoose.Schema({
         type: String,
         required: true
     },
+
+    precioZona: {
+        type: String,
+        required: true
+    },
     
 
 
